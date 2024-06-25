@@ -1,0 +1,2277 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="he-IL">
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="noindex" />
+    <link href="https://fonts.googleapis.com/css?family=Assistant:400,700&display=swap&subset=hebrew"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="Files/signature-pad.css" />
+    <link rel="stylesheet" type="text/css" href="Files/sweetalert.css?0" />
+    <script src="Files/sweetalert.min.js"></script>
+    <script type="text/javascript" src="Files/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="Files/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="Files/BankList.js"></script>
+
+
+    <title>טופס - נדרים פלוס</title>
+    <style>
+        * {
+            font-family: 'Assistant', Arial, sans-serif;
+        }
+
+        @media screen and (max-width: 400px) {
+            .DivTelText {
+                width: 80% !important
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            #MainForm {
+                margin-right: 0px !important
+            }
+        }
+
+        .TextBox {
+            -webkit-appearance: none;
+            font-size: large;
+            color: #3f475e;
+            text-align: right;
+            padding: 6px;
+            border-color: #f7bb4d;
+            border-style: solid;
+            border-width: 0px 0px 2px 0px;
+            margin: 5px 5px;
+            background-color: #FFFFFB;
+            -webkit-box-sizing: border-box
+        }
+
+        .RadioBtLbl {
+            border-style: solid;
+            border-color: #f7bb4d;
+            border-width: 0px 0px 2px 0px;
+            margin: 0px 10px;
+            background-color: #FFFFFB;
+            padding: 10px 2px 10px 10px;
+            border-radius: 2px;
+            -webkit-user-select: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+
+        .SelectValLbl {
+            border-style: solid;
+            width: 90%;
+            text-align-last: center;
+            border-color: #f7bb4d;
+            border-width: 0px 0px 2px 0px;
+            font-size: large;
+            color: #3f475e;
+            margin: 0px 5px;
+            background-color: #FFFFFB;
+            padding: 7px 2px 10px 10px;
+            border-radius: 2px;
+            -webkit-user-select: none;
+            cursor: pointer;
+            display: inline-block;
+            outline: none;
+        }
+
+        .Koteret {
+            font-size: 22px;
+            color: #ff6a00;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 27px;
+            padding-left: 27px;
+            width: 90%;
+            margin-top: 27px;
+            margin-bottom: 10px;
+            -webkit-user-select: none;
+        }
+
+
+        li {
+            text-align: right;
+            padding: 0px 0px 0px 25px;
+            font-size: 17px;
+            -webkit-user-select: none;
+        }
+
+        .checkbox {
+            text-align: right;
+            color: #2B3A63;
+            padding: 0px 0px 0px 25px;
+            font-size: 17px;
+        }
+
+
+
+        textarea:focus,
+        input[type=text]:focus,
+        input[type=tel]:focus {
+            outline: none;
+            border-width: 0px 0px 2px 0px;
+            border-color: #38c232
+        }
+
+        .Bt {
+            -webkit-appearance: none;
+            font-size: large;
+            color: white;
+            background-color: #38c232;
+            text-align: center;
+            padding: 12px 24px 12px 24px;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: #808080;
+            -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.75);
+            background-color: white;
+            max-width: 500px;
+            min-width: 200px;
+            min-height: 250px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        td {
+            color: #1f9cc4;
+            font-size: large;
+            border: 1px solid #d7cece;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        th {
+            min-height: 500px;
+            border: 1px solid #d7cece;
+            color: #2B3A63;
+            font-family: assistant, Arial;
+        }
+
+        .bordered td,
+        .bordered th {
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .TableLightFont {
+            font-weight: lighter;
+            font-size: 14px;
+        }
+
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #d7cece;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .TableKoteret {
+            text-align: center;
+            padding-right: 20px;
+            /*background-color: aliceblue;*/
+            font-size: 25px;
+            color: steelblue;
+            /*lightslategrey*/
+            font-weight: normal;
+        }
+
+        .fieldName {
+            display: inline-block;
+            text-align: right;
+            width: 100%;
+            font-size: medium;
+            margin-right: 5px;
+            color: #808080;
+            -webkit-user-select: none;
+            margin-right: 10px
+        }
+    </style>
+    <script>
+        var cardListHtml = '';
+
+        var studentData = ''
+        var formVersion = 'nedorim';
+        var responseStudentData = '';
+        var centerElements = 'selectForm,LoginKodKollel,LoginPassword,LoginTelInput,LoginTelCodeInputVal';
+
+        // var centerClasses = 'MainBts,Bt';
+
+        // if (window.location.hostname === 'www.matara.pro') {
+        //     formVersion = 'nedorim'
+        // }
+        // else {
+        //     formVersion = 'server';
+        // }
+
+        var formType = 'insert';
+        var isBlocked = false;
+        var moreDetailsToSendTo1831 = '';
+        if (formType === 'update') {
+            formTitle = '<span class="He">טופס רישום לאברך קיים</span><span class="En">An existing Avrech registration form</span>'
+        }
+        else {
+            formTitle = "<span class='En' style='font-size: 20px;'>Registration form for the government scholarship for Avrachi Kollel</span><span class='He'>טופס רישום לאברך חדש</span>"
+        }
+        var AllCodeKollel = [
+            '9512',
+            '8523',
+            '7412',
+            '96325',
+            '741258',
+            '9001',
+            '9002',
+            '9003',
+            '9004',
+            '9005',
+            '50017',
+            '96325',
+            '1043372',
+            '1098218',
+            '1153064',
+            '808080',
+            '909090',
+            '707070',
+            '606060',
+            '505050'];
+        var coleKollelWithoutOnlyDatot = [
+            '91790', '9299', '49292', '97431', '51259', '67949', '30812', '80638', '8691', '42079', '70626', '54542', '18391', '2217',
+            '72322'
+        ]
+
+ 
+
+
+        var phoneVerification = false;
+
+
+        //feature_1
+        var Snifim = [
+            { "SnifName": "קטגוריה א'" },
+            { "SnifName": "קטגוריה ב'" },
+            { "SnifName": "קטגוריה ג'" }
+        ]
+
+
+        var MasofId = ''
+        var ClientId = '';
+        var Zeout = '';
+        var OldTofesId = '';
+        var Demo = ''
+        var ColorList = '';
+        var ListCount = 1;
+
+        function UpdateClick() {
+            if (MasofId !== '') parent.UpdateClick()
+        }
+
+        function getFormList() {
+            var JsonData = [
+                {
+                    id: "2000",
+                    HeDescription: "טופס לראש כולל - רשימת אברכים",
+                    EnDescription: "Form for Rosh Kollel - Avrechim List",
+                    enabled: true,
+                } ,
+
+                {
+                    id: "2001",
+                    HeDescription: "טופס לראש כולל - פרטי הכולל",
+                    EnDescription: "Form for Rosh Kollel details of the Kollel",
+                    enabled: true,
+                } ,
+
+                {
+                    id: "2002",
+                    HeDescription: "טופס למילוי פרטי בחורים בלבד!",
+                    EnDescription:  "A form to fill in the details of guys only",
+                    enabled: true,
+                } ,
+            ]
+            
+            JsonData.forEach(function (form) {
+                if (form['enabled'] === true){
+                    cardListHtml = cardListHtml + '<div class="MainBts" onclick="Go_To(' + form.id + ')" style="text-align: center;"><span class="He">' + form.HeDescription + '</span><span class="En" style="display: none;">' + form.EnDescription + '</span></div>';
+                }
+            });
+            $('#CardBtSelectedMenu').append(cardListHtml);
+
+
+        }
+
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0].toLowerCase() === sParam.toLowerCase()) {
+                    return sParameterName[1];
+                }
+            }
+            return ''
+        }
+
+        function GetClientData() {
+            if (formVersion === 'server') {
+                $('#AllMainForm').show();
+                $('#CardLogin').hide();
+            }
+            else {
+                $("#AllMainForm").hide();
+                $("#WaitDiv2").show()
+            }
+            $.ajax({
+                url: "Manage.aspx?Action=GetClientData&MosadId=" + Json.MosadId + "&TofesId=" + Json.TofesId + "&ClientId=" + ClientId + "&Zeout=" + Zeout,
+                context: Text,
+                timeout: 60000,
+            }).success(function (JsonData) {
+                $("#WaitDiv2").hide()
+                $("#AllMainForm").show();
+
+                if (JsonData.Status === 'Error' && JsonData.Message === 'NOT FOUND') { return false }
+                OldTofesId = JsonData.ID;
+                $("#EditNote").show();
+                for (var Element in Json.FormElements) {
+                    var JsonElement = Json.FormElements[Element]
+                    if (JsonElement.DbName !== undefined) {
+
+                        if (JsonElement.Type === 'Radio') {
+                            for (i = 0; i < JsonElement.RadioBt.length; i++) {
+                                if (JsonElement.RadioBt[i].Text === JsonData[JsonElement.DbName]) { $("#" + JsonElement.ElementId + '_Radio' + i).prop('checked', 'checked') }
+                            }
+                        }
+
+
+                        else
+                            $("#" + JsonElement.ElementId).val(JsonData[JsonElement.DbName])
+                    }
+
+                }
+                Calculate()
+
+            }).error(function () {
+                var BtTex = 'חזרה לנדרים פלוס'
+                if (MasofId === '') BtTex = 'איפוס טופס'
+                swal({
+                    title: 'שגיאה בקבלת נתונים בדוק תקשורת                       טופס זה מופעל ע"י מלכר מערכות ואין לפנות אל נדרים פלוס כלל !!!',
+                    type: "error",
+                    showCancelButton: false,
+                    confirmButtonText: BtTex,
+                    closeOnConfirm: true,
+                    allowOutsideClick: false,
+                }, function (isConfirm) {
+                    if (MasofId !== '') { parent.GoToMenu("Tafrit"); parent.closeIFrame() } else { $('html, body').scrollTop(0); location.reload(); }
+                });
+
+            });
+        }
+                
+
+        $(window).load(function () {
+            if (MasofId !== '') {
+                swal({
+                    type: 'warning',
+                    title: 'אברך יקר!',
+                    text: '<span style="font-size:large">היות ואנחנו עורכים עידכונים בטופס רישום ולא תמיד זה מתעדכן מיד במכשיר של  נדרים פלוס. <BR>אז אם נכנסת מעמדה בבית כנסת תלחץ בבקשה על הכפתור חזרה לנדרים פלוס.<BR> ותיכנס לכפתור "אפשרויות נוספות" ותלחץ על כפתור "ריענון קוביות" רק אם יש.<BR> אם אין תחזור לטופס רישום. <Br><b>תודה<b></span>',
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    confirmButtonText: (ActionLanguage === "En" ? "OK" : "אישור"),
+                    html: true,
+                }, function () {
+                    setTimeout(function () {
+                        $("#SaveDiv").show();
+                        $("#WaitDiv").hide();
+                    }, 100);
+                    if (ActionLanguage === "En") { $('.En').show(); $('.He').hide(); } else if (ActionLanguage === "He") {
+                        $('.En').hide(); $('.He').show()
+                    }
+                });
+            }
+        })
+        var CheckElementId = [];
+        var CheckDbName = [];
+        var CheckDBFree = [];
+        var SignData = ''
+        var SendCodeDubleTimeout;
+
+
+
+        var MainForm = '';
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+
+            //AddClientLogin("1");
+
+            if (GetURLParameter("Demo") === '1') Demo = "&Demo=1";
+            MasofId = GetURLParameter("MasofId");
+            ClientId = GetURLParameter("ClientId");
+            Zeout = GetURLParameter("Zeout");
+            version = GetURLParameter('Version');
+
+            if (GetURLParameter("Admin") === '1') $("#AdminBt").show();
+            if (MasofId !== '') $("#BackToNedarim").show();
+
+
+
+
+
+
+            //$('#Lomedbkolel').hide(); $('input[type=radio][name=Lomedbkolel]').prop('checked', false);
+            //$('#LomedbkolelAPlace').hide(); $('input[type=radio][name=LomedbkolelAPlace]').prop('checked', false);
+            //$('#WhatAreYouBusyWithDiv').hide();
+            //$('#IsTheCellPhoneAvailable').hide(); $('input[type=radio][name=IsTheCellPhoneAvailable]').prop('checked', false);
+            //$('#IsThereReception').hide(); $('input[type=radio][name=IsThereReception]').prop('checked', false);
+
+            //$('#NameKolelBoker,#NameKolelZarim').on('input', function () {
+            //    if ($('#NameKolelBoker').val()==='רק דתות' || $('#NameKolelZarim').val()==='רק דתות') {
+            //        $('#Lomedbkolel').show();
+            //    } else {
+            //        $('#Lomedbkolel').hide(); $('input[type=radio][name=Lomedbkolel]').prop('checked', false);
+            //        $('#LomedbkolelAPlace').hide(); $('input[type=radio][name=LomedbkolelAPlace]').prop('checked', false);
+            //        $('#WhatAreYouBusyWithDiv').hide();
+            //        $('#IsTheCellPhoneAvailable').hide(); $('input[type=radio][name=IsTheCellPhoneAvailable]').prop('checked', false);
+            //        $('#IsThereReception').hide(); $('input[type=radio][name=IsThereReception]').prop('checked', false);
+            //    }
+            //})
+
+            //$('input[type=radio][name=Lomedbkolel]').change(function () {
+            //    if ($('input[name=Lomedbkolel]:checked').val()==="לא") {
+            //        $('#LomedbkolelAPlace').show();
+            //        $('#WhatAreYouBusyWithDiv').show();
+            //        $('#IsTheCellPhoneAvailable').show();
+            //        $('#IsThereReception').show();
+            //    } else {
+            //        $('#LomedbkolelAPlace').hide(); $('input[type=radio][name=LomedbkolelAPlace]').prop('checked', false);
+            //        $('#WhatAreYouBusyWithDiv').hide();
+            //        $('#IsTheCellPhoneAvailable').hide(); $('input[type=radio][name=IsTheCellPhoneAvailable]').prop('checked', false);
+            //        $('#IsThereReception').hide(); $('input[type=radio][name=IsThereReception]').prop('checked', false);
+            //    }
+            //})
+
+
+            $('#NameMosad1Div').hide();
+            $('#TypeMosad1Div').hide();
+            $('#GovaTlush1Div').hide();
+            $('#Numtime1Div').hide();
+            $('#IshurDiv').hide();
+            $('input[type=radio][name=IsTlush]').change(function () {
+                $('#NameMosad1Div').hide(); $('#NameMosad1').val('');
+                $('#TypeMosad1Div').hide(); $('#TypeMosad1').val('');
+                $('#GovaTlush1Div').hide(); $('#GovaTlush1').val('');
+                $('#Numtime1Div').hide(); $('#Numtime1').val('');
+                if ($('input[name=IsTlush]:checked').val() === "לא") {
+                    $('#IshurDiv').show();
+                    var text, title
+                    if ($('.He').is(':visible')) {
+                        text = 'אם יש לך כל תלוש שהוא מכל סוג של מוסד חינוכי שיש להם איזה שהוא קשר עם משרד החינוך.<BR> כגון חיידר/ישיבה קטנה/מסגרות לנוער וכדומה או כל מיני מסגרות חינוכיות תחת מעיין החינוך התורני/החינוך העצמאי וכדומה. <BR> אפילו אם זה רק שעה ביום או פעם פעמיים בשבוע וגם אם אתה נמצא שמה רק בערב, <BR> אתה חייב לדווח לנו ולא משנה באיזה תפקיד אתם ומה עושים שמה בכל מקרה צריך לשאול ולדווח לנו <BR> ואם יש לך ספק אז תדווח לנו ונבדוק כל מקרה לגופו  ואם לא תדווח לנו עלול לגרום בעיות גדולות ותישא באחריות לכל תוצאה.';
+                        title = 'שים לב:'
+
+                    }
+                    else {
+                        text = 'If you have any Pay slip from any type of educational institution that has any connection with the Ministry of Education. <BR> Such as Haydar/small yeshiva/youth frameworks and the like or all kinds of educational frameworks under the source of "Maayan hachinuch hatorani"/"Hahinuch Haazmai" and the like. <BR> Even if it\'s just an hour a day or once or twice a week and even if you\'re there only in the evening, <BR> you must report to us and it doesn\'t matter what position you are in and what you\'re doing, in any case you should ask and report to us <BR> and if you have any doubts then Report to us and we will investigate each case individually and if you do not report to us it may cause big problems and you will be responsible for any result.'
+                        title = 'Please note:';
+                    }
+                    swal({
+                        type: 'warning',
+                        title: title,
+                        text: text,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                        confirmButtonText: (ActionLanguage === "En" ? "OK" : "אישור"),
+                        html: true,
+                    }, function () { })
+                } else {
+                    $('#IshurDiv').hide(); $('#Ishur').prop('checked', false);
+                    $('#NameMosad1Div').show();
+                    $('#TypeMosad1Div').show();
+                    $('#GovaTlush1Div').show();
+                    $('#Numtime1Div').show();
+                }
+            })
+
+            $('#NameMosad2Div').hide();
+            $('#Numtime2Div').hide();
+            $('#Ishur2Div').hide();
+            $('input[type=radio][name=IsMslullimudim]').change(function () {
+                $('#NameMosad2Div').hide(); $('#NameMosad2').val('');
+                $('#Numtime2Div').hide(); $('#Numtime2').val('');
+                if ($('input[name=IsMslullimudim]:checked').val() === "לא") {
+                    $('#Ishur2Div').show();
+                } else {
+                    $('#Ishur2Div').hide(); $('#Ishur').prop('checked', false);
+                    $('#NameMosad2Div').show();
+                    $('#Numtime2Div').show();
+                }
+            })
+
+
+            $('#NumTypeMdvechDiv').hide();
+            $('#timeDivuch').hide();
+            $('input[type=radio][name=IsShrutLumi]').change(function () {
+                $('#NumTypeMdvechDiv').hide(); $('#NumTypeMdvech').val('');
+                $('#timeDivuch').hide(); $('input[type=radio][name=timeDivuch]').prop('checked', false);
+                if ($('input[name=IsShrutLumi]:checked').val() === "כן") {
+                    $('#NumTypeMdvechDiv').show();
+                    $('#timeDivuch').show();
+                }
+            })
+
+
+            $('#AreYouPlanningUToLeaveTheCountryYasFlightDateDiv').hide();
+            $('#AreYouPlanningUToLeaveTheCountryYasReturnDateDiv').hide();
+            $('input[type=radio][name=AreYouPlanningUToLeaveTheCountry]').change(function () {
+                $('#AreYouPlanningUToLeaveTheCountryYasFlightDateDiv').hide(); $('#AreYouPlanningUToLeaveTheCountryYasFlightDate').val('');
+                $('#AreYouPlanningUToLeaveTheCountryYasReturnDateDiv').hide(); $('#AreYouPlanningUToLeaveTheCountryYasReturnDate').val('');
+                if ($('input[name=AreYouPlanningUToLeaveTheCountry]:checked').val() === "yas") {
+                    $('#AreYouPlanningUToLeaveTheCountryYasFlightDateDiv').show();
+                    $('#AreYouPlanningUToLeaveTheCountryYasReturnDateDiv').show();
+                    $('#AreYouPlanningUToLeaveTheCountryYasFlightDate').focus();
+                }
+            })
+
+
+            $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDateDiv').hide();
+            $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasReturnDateDiv').hide();
+            $('input[type=radio][name=DoYouPlanToLeaveTheCountryBeforeTheEndOfTime]').change(function () {
+                $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDateDiv').hide(); $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDate').val('');
+                $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasReturnDateDiv').hide(); $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasReturnDate').val('');
+                if ($('input[name=DoYouPlanToLeaveTheCountryBeforeTheEndOfTime]:checked').val() === "yas") {
+                    $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDateDiv').show();
+                    $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasReturnDateDiv').show();
+                    $('#DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDate').focus();
+                }
+            })
+
+            $('#ZavaEnlistmentDatenon').change(function () {
+                if ($(this).is(':checked')) {
+                    MySwalAndType('<span class="He">נא להתקשר למיטב במספר 1111 לוודא מה התאריך שאתה צריך להגיע</span><span class="En">Please call Meitav at 1111 to verify the date you need to arrive</span>', 'ZavaEnlistmentDatenon')
+                }
+            })
+            // // kollel kod 118341
+            // $('#CodKolelBoker, #CodKolelZarim').focusout(function () {
+            //     if ($(this).val() === '118341') {
+            //         $('#NumKidsDiv').show();
+            //         if ($(this).attr('id') === 'CodKolelBoker') {
+            //             $('#ThePlaceOfYeshivaInTheBeitMidrashMorning').show();
+            //             $('#NameKolelMorningDiv').hide();
+            //             $('#TelKolelMorningDiv').hide();
+            //             $('#BetMorningDiv').hide()
+            //         }
+            //         else {
+            //             $('#ThePlaceOfYeshivaInTheBeitMidrashNoon').show();
+            //             $('#NameKolelNoonDiv').hide();
+            //             $('#TelKolelNoonDiv').hide();
+            //             $('#BetNoonDiv').hide();
+            //         }
+            //     }
+            //     else {
+            //         $('#NumKidsDiv').hide();
+            //         if ($(this).attr('id') === 'CodKolelBoker') {
+            //             $('#ThePlaceOfYeshivaInTheBeitMidrashMorning').hide();
+            //             if ($('#TypeKolelMorning_Radio1').is(':checked')) {
+            //                 $('#NameKolelMorningDiv').show();
+            //                 $('#TelKolelMorningDiv').show();
+            //                 $('#BetMorningDiv').show()
+            //             }
+            //         }
+            //         else {
+            //             $('#ThePlaceOfYeshivaInTheBeitMidrashNoon').hide();
+            //             if ($('#TypeKolelNoon_Radio1').is(':checked')) {
+            //                 $('#NameKolelNoonDiv').show();
+            //                 $('#TelKolelNoonDiv').show();
+            //                 $('#BetNoonDiv').show();
+            //             }
+            //         }
+            //     }
+            // })
+
+
+            if (formVersion === 'nedorin') {
+                listCityGetAllCity({
+                    CityId: '#City',
+                    StreetId: '#Street',
+                    Auto_Focus_After_City_Selection: true,
+                    list_Citys: []
+                })
+            }
+
+
+
+
+
+
+
+            FormatDate('BDE,PassportExpiration,AreYouPlanningUToLeaveTheCountryYasFlightDate,AreYouPlanningUToLeaveTheCountryYasReturnDate,DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasFlightDate,DoYouPlanToLeaveTheCountryBeforeTheEndOfTimeYasReturnDate')
+            //AddBankList("Bank");
+        });
+
+        function AdjustKollelFields() {
+            if (kollelGroup === 118341) {
+                $('#CodKolelBokerDiv').hide();
+                $('#CodKolelZarimDiv').hide();
+                $('#CodKolelBoker').val(118341);
+                $('#CodKolelZarim').val(118341);
+                $('#ThePlaceOfYeshivaInTheBeitMidrashNoon').show();
+                $('#BetNoonDiv').hide();
+                $('#NameKolelNoonDiv').hide();
+                $('#TelKolelNoonDiv').hide();
+                $('#NumKidsDiv').show();
+                $('#DivOpen118341').show();
+                $('#TheNameOfTheGroupNoonDiv').show();
+                $('#notFinishRegistration').hide();
+            } else {
+                $('#CodKolelBokerDiv').show();
+                $('#CodKolelZarimDiv').show();
+                $('#ThePlaceOfYeshivaInTheBeitMidrashNoon').hide();
+                $('#TheNameOfTheGroupNoonDiv').hide();
+                $('#BetNoonDiv').show();
+                $('#NameKolelNoonDiv').show();
+                $('#TelKolelNoonDiv').show();
+                $('#NumKidsDiv').hide();
+                $('#DivOpen118341').hide();
+                $('#notFinishRegistration').show();
+            }
+            if (coleKollelWithoutOnlyDatot.indexOf(String(kollelGroup)) !== -1) {
+                $('input[name*="TypeKolel"][value="אני במסגרת הלימודית"]').click();
+                $('#TypeKolelMorning, #TypeKolelNoon').hide();
+            }
+        }
+
+        function showIsDichuy() {
+            var thisDate = new Date().getFullYear()
+            if ((+$('#BDE').val().split('/')[2] - thisDate > -26) && TypeZihuy === 'ת.ז') {
+                $('#Isdichuy').show();
+            } else {
+                $('#Isdichuy').hide();
+                $('input[type=radio][name=Isdichuy]').prop('checked', false);
+                $('#Isdichuy').hide();
+                $('#FatherNameDiv').hide(); $('#FatherName').val('');
+            }
+        }
+
+        function hideAndEmptyDiv(divIdList) {
+            for (var i = 0; i < divIdList.split(',').length; i++) {
+                var divId = divIdList.split(',')[i];
+                $('#' + divId).hide();
+                $('#' + divId + " :input").each(function () {
+                    if ($(this).attr('type') === 'Text' || $(this).attr('type') === 'Tel') {
+                        $(this).val('');
+                    }
+                    else if ($(this).attr('type') === 'radio' || $(this).attr('type') === 'CheckBox') {
+                        $(this).prop('checked', false);
+                    }
+                })
+                $('#' + divId).find('[id*=Main]').each(function () {
+                    hideAndEmptyDiv($(this).attr('id'));
+                })
+            }
+        }
+        function CopyData() {
+            $('#NameKolelNoon').val($('#NameKolelMorning').val())
+            $('#BetNoon').val($('#BetMorning').val())
+            $('#TelKolelNoon').val($('#TelKolelMorning').val())
+            $('#CodKolelZarim').val($('#CodKolelBoker').val())
+        }
+
+
+        function CreatingPopUpWindowDoubel1(Data) {
+            var html = ''
+            html += '<div id="PopUpWindow_' + Data.ElementIdCard1 + '" style="position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; padding: 14px 0; background-color: rgba(0, 0, 0, 0.5);display:none;">'
+            html += '<div style="margin: 5px auto 20px; padding: 20px; border: 1px solid #888; width: 80%; color: #808080; font-family: Assistant, sans-serif; -webkit-box-shadow: 0px 0px 30px 0px rgb(50 50 50 / 75%); background-color: white; max-width: 450px; min-width: 200px; position: relative; border-radius: 20px; text-align: center;">'
+            html += '<span style="cursor: pointer; position: absolute; background: indianred; padding: 6px 15px; color: white; font-weight: 600; font-size: 22px; border-radius: 7px 15px; top: 5px; right: 5px;" onclick="$(this).parent().parent().hide()" >X</span>'
+            html += '<div style="text-align:center">'
+            html += '<div style="display: inline-block; font-family: Assistant, sans-serif; font-size: 22px; color: #ff6a00; font-weight: bold; width: 90%; margin-top: 27px; margin-bottom: 18px; -webkit-user-select: none; text-align: center; padding: 0;">בחר ' + Data.TitleCard1 + ':</div>'
+            html += '<input id="PopUpWindowSearch_' + Data.ElementIdCard1 + '" style="-webkit-appearance: none; font-size: large; color: #3f475e; text-align: center; padding: 6px; border-color: #f7bb4d; border-style: solid; border-width: 0px 0px 2px 0px; margin: 5px 5px; background-color: #FFFFFB; -webkit-box-sizing: border-box;margin-top: -7px;display:none;" type="text" placeholder="חפש ' + Data.TitleCard1 + '" />'
+            html += '<div id="CardFixedCount_' + Data.ElementIdCard1 + '" style="padding: 5px 0 13px;display:none">סה"כ תוצאות: <span></span></div>'
+            html += '<table id="PopUpWindowTable_' + Data.ElementIdCard1 + '" style="text-align:center;width:95%;font-size:medium;background-color:white"></table>'
+            html += '</div></div></div>'
+
+
+            $('body').append(html)
+
+
+            $("#" + Data.ElementIdCard1).focus(function () {
+                $("#PopUpWindow_" + Data.ElementIdCard1).show()
+                $("#" + Data.ElementIdCard1).blur()
+                $('#PopUpWindowSearch_' + Data.ElementIdCard1).val('')
+                PopUpWindowSearchCard1()
+                if (Data.FocusCard1 === true) {
+                    $('#PopUpWindowSearch_' + Data.ElementIdCard1).focus()
+                }
+            });
+
+            var TestArrayDataParsCard1 = []
+            var ArrayDataParsCard1 = []
+            if (Data.DeleteDuplicatesCard1 === true) {
+                for (i = 0; i < Data.ArrayData.length; i++) {
+                    if (TestArrayDataParsCard1.indexOf(Data.ArrayData[i].Card1Display) === -1) {
+                        TestArrayDataParsCard1.push(Data.ArrayData[i].Card1Display)
+                        ArrayDataParsCard1.push({ Card1Display: Data.ArrayData[i].Card1Display, Card1Value: Data.ArrayData[i].Card1Value })
+                    }
+                }
+            } else {
+                for (i = 0; i < Data.ArrayData.length; i++) {
+                    ArrayDataParsCard1.push({ Card1Display: Data.ArrayData[i].Card1Display, Card1Value: Data.ArrayData[i].Card1Value })
+                }
+            }
+
+
+            if (Data.SortCard1 === true) {
+                ArrayDataParsCard1.sort(function (a, b) {
+                    if (a.Card1Display < b.Card1Display) return -1;
+                    if (a.Card1Display > b.Card1Display) return 1;
+                    return 0;
+                })
+            }
+
+
+            function PopUpWindowSearchCard1() {
+                $('#PopUpWindowTable_' + Data.ElementIdCard1).html('')
+                var KeyWord = $('#PopUpWindowSearch_' + Data.ElementIdCard1).val().split(' ')
+                var Counter = 0
+                for (var i = 0; i < ArrayDataParsCard1.length; i++) {
+                    var Exist = true
+                    for (var j = 0; j < KeyWord.length; j++) {
+                        if (ArrayDataParsCard1[i].Card1Display) {
+                            if (ArrayDataParsCard1[i].Card1Display.indexOf(KeyWord[j]) < 0) { Exist = false }
+                        }
+                    }
+                    if (ArrayDataParsCard1[i].Card1Display === $('#PopUpWindowSearch_' + Data.ElementIdCard1).val()) { Exist = true }
+                    if (Exist === true) {
+                        Counter += 1
+                        $('#PopUpWindowTable_' + Data.ElementIdCard1).append('<tr><td id="PopUpWindowBt_' + Data.ElementIdCard1 + i + '" style="user-select: none;cursor:pointer;font-weight:bold;width:80%;text-align:right"><div style="text-align:center;font-size: 20px;color: #2B3A63;">' + ArrayDataParsCard1[i].Card1Display + '</div></td></tr>');
+                        (function (i) {
+                            $('#PopUpWindowBt_' + Data.ElementIdCard1 + i).click(function () {
+                                if ($("#" + Data.ElementIdCard1).val() !== ArrayDataParsCard1[i].Card1Value) {
+                                    $("#" + Data.ElementIdCard1).val(ArrayDataParsCard1[i].Card1Value)
+                                    if (Data.Card2 === true) {
+                                        $("#" + Data.ElementIdCard2).val('');
+                                    }
+                                    if (Data.Card3 === true) {
+                                        $("#" + Data.ElementIdCard3).val('');
+                                    }
+                                    if (Data.Card4 === true) {
+                                        $("#" + Data.ElementIdCard4).val('');
+                                    }
+                                }
+                                $("#PopUpWindow_" + Data.ElementIdCard1).hide()
+                                setTimeout(function () { ScrollUp($('#' + Data.ElementIdCard1)) }, 100);
+                                if (Data.Card2 === true) {
+                                    if (Data.OpenCard2AfterSelectCard1 === true) {
+                                        Card2Focus()
+                                    }
+                                }
+                            });
+                        })(i);
+                    };
+                }
+                $('#CardFixedCount_' + Data.ElementIdCard1 + ' span').html(Counter)
+            }
+
+            PopUpWindowSearchCard1()
+
+            $('#PopUpWindowSearch_' + Data.ElementIdCard1).on('input', function () {
+                PopUpWindowSearchCard1()
+            })
+
+            if (Data.SearchCard1 === true) {
+                $('#PopUpWindowSearch_' + Data.ElementIdCard1).show()
+                $('#CardFixedCount_' + Data.ElementIdCard1).show()
+            }
+
+
+
+
+            //////////////////  Card2
+
+
+            function Card2Focus() {
+                if (Data.AutoFillOneResultCard2 === true) {
+                    var TotalFilter = Data.ArrayData.filter(function (elm) {
+                        return $("#" + Data.ElementIdCard1).val() === elm.Card1Value
+                    })
+
+                    var TotalFilterDeleteDuplicates = TotalFilter
+                    if (Data.DeleteDuplicatesCard2 === true) {
+                        TotalFilterDeleteDuplicates = []
+                        for (i = 0; i < TotalFilter.length; i++) {
+                            if (!TotalFilterDeleteDuplicates.filter(function (elm) { return elm.Card2Display === Data.ArrayData[i].Card2Display })[0]) {
+                                TotalFilterDeleteDuplicates.push({ Card2Display: TotalFilter[i].Card2Display, Card2Value: TotalFilter[i].Card2Value })
+                            }
+                        }
+                    }
+
+                    var TextTotalFilterDeleteDuplicates = []
+                    for (i = 0; i < TotalFilterDeleteDuplicates.length; i++) {
+                        if (TextTotalFilterDeleteDuplicates.indexOf(TotalFilterDeleteDuplicates[i].Card2Display) === -1) {
+                            TextTotalFilterDeleteDuplicates.push(TotalFilterDeleteDuplicates[i].Card2Display)
+                        }
+                    }
+
+                    if (TextTotalFilterDeleteDuplicates.length === 1) {
+                        $("#" + Data.ElementIdCard2).val(TotalFilterDeleteDuplicates[0].Card2Value)
+                        Card3Focus()
+                    } else {
+                        $("#" + Data.ElementIdCard2).focus()
+                    }
+                } else {
+                    $("#" + Data.ElementIdCard2).focus()
+                }
+            }
+
+
+            if (Data.Card2 === true) {
+                var html = ""
+                html += '<div id="PopUpWindow_' + Data.ElementIdCard2 + '" style="position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; padding: 14px 0; background-color: rgba(0, 0, 0, 0.5);display:none;">'
+                html += '<div style="margin: 5px auto 20px; padding: 20px; border: 1px solid #888; width: 80%; color: #808080; font-family: Assistant, sans-serif; -webkit-box-shadow: 0px 0px 30px 0px rgb(50 50 50 / 75%); background-color: white; max-width: 450px; min-width: 200px; position: relative; border-radius: 20px; text-align: center;">'
+                html += '<span style="cursor: pointer; position: absolute; background: indianred; padding: 6px 15px; color: white; font-weight: 600; font-size: 22px; border-radius: 7px 15px; top: 5px; right: 5px;" onclick="$(this).parent().parent().hide()" >X</span>'
+                html += '<div style="text-align:center">'
+                html += '<div style="display: inline-block; font-family: Assistant, sans-serif; font-size: 22px; color: #ff6a00; font-weight: bold; width: 90%; margin-top: 27px; margin-bottom: 18px; -webkit-user-select: none; text-align: center; padding: 0;">בחר ' + Data.TitleCard2 + ':</div>'
+                html += '<input id="PopUpWindowSearch_' + Data.ElementIdCard2 + '" style="-webkit-appearance: none; font-size: large; color: #3f475e; text-align: center; padding: 6px; border-color: #f7bb4d; border-style: solid; border-width: 0px 0px 2px 0px; margin: 5px 5px; background-color: #FFFFFB; -webkit-box-sizing: border-box;margin-top: -7px;display:none;" type="text" placeholder="חפש ' + Data.TitleCard2 + '" />'
+                html += '<div id="CardFixedCount_' + Data.ElementIdCard2 + '" style="padding: 5px 0 13px;display:none">סה"כ תוצאות: <span></span></div>'
+                html += '<table id="PopUpWindowTable_' + Data.ElementIdCard2 + '" style="text-align:center;width:95%;font-size:medium;background-color:white"></table>'
+                html += '</div></div></div>'
+
+                $('body').append(html)
+
+
+                $("#" + Data.ElementIdCard2).focus(function () {
+                    if ($("#" + Data.ElementIdCard1).val() === "") {
+                        $("#" + Data.ElementIdCard1).focus()
+                    } else {
+                        $("#PopUpWindow_" + Data.ElementIdCard2).show()
+                        $("#" + Data.ElementIdCard2).blur()
+                        $('#PopUpWindowSearch_' + Data.ElementIdCard2).val('')
+                        if (Data.FocusCard2 === true) {
+                            $('#PopUpWindowSearch_' + Data.ElementIdCard2).focus()
+                        }
+
+                        var TestArrayDataParsCard2 = []
+                        var ArrayDataParsCard2 = []
+                        for (i = 0; i < Data.ArrayData.length; i++) {
+                            if (Data.DeleteDuplicatesCard2 === true) {
+                                if (TestArrayDataParsCard2.indexOf(Data.ArrayData[i].Card2Display) === -1 && Data.ArrayData[i].Card1Value === $("#" + Data.ElementIdCard1).val()) {
+                                    TestArrayDataParsCard2.push(Data.ArrayData[i].Card2Display)
+                                    ArrayDataParsCard2.push({ Card2Display: Data.ArrayData[i].Card2Display, Card2Value: Data.ArrayData[i].Card2Value })
+                                }
+                            } else {
+                                if (Data.ArrayData[i].Card1Value === $("#" + Data.ElementIdCard1).val()) {
+                                    ArrayDataParsCard2.push({ Card2Display: Data.ArrayData[i].Card2Display, Card2Value: Data.ArrayData[i].Card2Value })
+                                }
+                            }
+                        }
+
+
+                        if (Data.SortCard2 === true) {
+                            ArrayDataParsCard2.sort(function (a, b) {
+                                if (a.Card2Display < b.Card2Display) return -1;
+                                if (a.Card2Display > b.Card2Display) return 1;
+                                return 0;
+                            })
+                        }
+
+
+                        $('#PopUpWindowSearch_' + Data.ElementIdCard2).on('input', function () {
+                            PopUpWindowSearchCard2()
+                        })
+
+                        if (Data.SearchCard2 === true) {
+                            $('#PopUpWindowSearch_' + Data.ElementIdCard2).show()
+                            $('#CardFixedCount_' + Data.ElementIdCard2).show()
+                        }
+
+
+                        function PopUpWindowSearchCard2() {
+                            $('#PopUpWindowTable_' + Data.ElementIdCard2).html('')
+                            var KeyWord = $('#PopUpWindowSearch_' + Data.ElementIdCard2).val().split(' ')
+                            var Counter = 0
+                            for (var i = 0; i < ArrayDataParsCard2.length; i++) {
+                                var Exist = true
+                                for (var j = 0; j < KeyWord.length; j++) {
+                                    if (ArrayDataParsCard2[i].Card2Display.indexOf(KeyWord[j]) < 0) { Exist = false }
+                                }
+                                if (ArrayDataParsCard2[i].Card2Display === $('#PopUpWindowSearch_' + Data.ElementIdCard2).val()) { Exist = true }
+                                if (Exist === true) {
+                                    Counter += 1
+                                    $('#PopUpWindowTable_' + Data.ElementIdCard2).append('<tr><td id="PopUpWindowBt_' + Data.ElementIdCard2 + i + '" style="user-select: none;cursor:pointer;font-weight:bold;width:80%;text-align:right"><div style="text-align:center;font-size: 20px;color: #2B3A63;">' + ArrayDataParsCard2[i].Card2Display + '</div></td></tr>');
+                                    (function (i) {
+                                        $('#PopUpWindowBt_' + Data.ElementIdCard2 + i).click(function () {
+                                            if ($("#" + Data.ElementIdCard2).val() !== ArrayDataParsCard2[i].Card2Value) {
+                                                $("#" + Data.ElementIdCard2).val(ArrayDataParsCard2[i].Card2Value)
+                                                if (Data.Card3 === true) {
+                                                    $("#" + Data.ElementIdCard3).val('');
+                                                }
+                                                if (Data.Card4 === true) {
+                                                    $("#" + Data.ElementIdCard4).val('');
+                                                }
+                                            }
+                                            $("#PopUpWindow_" + Data.ElementIdCard2).hide()
+                                            setTimeout(function () { ScrollUp($('#' + Data.ElementIdCard2)) }, 100);
+                                            if (Data.Card3 === true) {
+                                                if (Data.OpenCard3AfterSelectCard2 === true) {
+                                                    Card3Focus()
+                                                }
+                                            }
+                                        });
+                                    })(i);
+                                };
+                            }
+                            $('#CardFixedCount_' + Data.ElementIdCard2 + ' span').html(Counter)
+                        }
+
+                        PopUpWindowSearchCard2()
+                    }
+                });
+            }
+
+            //////////////////  Card3
+
+            function Card3Focus() {
+                if (Data.AutoFillOneResultCard3 === true) {
+                    var TotalFilter = Data.ArrayData.filter(function (elm) {
+                        return $("#" + Data.ElementIdCard1).val() === elm.Card1Value && $("#" + Data.ElementIdCard2).val() === elm.Card2Value
+                    })
+
+                    var TotalFilterDeleteDuplicates = TotalFilter
+                    if (Data.DeleteDuplicatesCard3 === true) {
+                        TotalFilterDeleteDuplicates = []
+                        for (i = 0; i < TotalFilter.length; i++) {
+                            if (!TotalFilterDeleteDuplicates.filter(function (elm) { return elm.Card3Display === Data.ArrayData[i].Card3Display })[0]) {
+                                TotalFilterDeleteDuplicates.push({ Card3Display: TotalFilter[i].Card3Display, Card3Value: TotalFilter[i].Card3Value })
+                            }
+                        }
+                    }
+
+                    var TextTotalFilterDeleteDuplicates = []
+                    for (i = 0; i < TotalFilterDeleteDuplicates.length; i++) {
+                        if (TextTotalFilterDeleteDuplicates.indexOf(TotalFilterDeleteDuplicates[i].Card3Display) === -1) {
+                            TextTotalFilterDeleteDuplicates.push(TotalFilterDeleteDuplicates[i].Card3Display)
+                        }
+                    }
+                    if (TextTotalFilterDeleteDuplicates.length === 1) {
+                        $("#" + Data.ElementIdCard3).val(TotalFilterDeleteDuplicates[0].Card3Value)
+                        Card4Focus()
+                    } else {
+                        $("#" + Data.ElementIdCard3).focus()
+                    }
+                } else {
+                    $("#" + Data.ElementIdCard3).focus()
+                }
+            }
+
+
+            if (Data.Card3 === true) {
+                var html = ""
+                html += '<div id="PopUpWindow_' + Data.ElementIdCard3 + '" style="position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; padding: 14px 0; background-color: rgba(0, 0, 0, 0.5);display:none;">'
+                html += '<div style="margin: 5px auto 20px; padding: 20px; border: 1px solid #888; width: 80%; color: #808080; font-family: Assistant, sans-serif; -webkit-box-shadow: 0px 0px 30px 0px rgb(50 50 50 / 75%); background-color: white; max-width: 450px; min-width: 200px; position: relative; border-radius: 20px; text-align: center;">'
+                html += '<span style="cursor: pointer; position: absolute; background: indianred; padding: 6px 15px; color: white; font-weight: 600; font-size: 22px; border-radius: 7px 15px; top: 5px; right: 5px;" onclick="$(this).parent().parent().hide()" >X</span>'
+                html += '<div style="text-align:center">'
+                html += '<div style="display: inline-block; font-family: Assistant, sans-serif; font-size: 22px; color: #ff6a00; font-weight: bold; width: 90%; margin-top: 27px; margin-bottom: 18px; -webkit-user-select: none; text-align: center; padding: 0;">בחר ' + Data.TitleCard3 + ':</div>'
+                html += '<input id="PopUpWindowSearch_' + Data.ElementIdCard3 + '" style="-webkit-appearance: none; font-size: large; color: #3f475e; text-align: center; padding: 6px; border-color: #f7bb4d; border-style: solid; border-width: 0px 0px 2px 0px; margin: 5px 5px; background-color: #FFFFFB; -webkit-box-sizing: border-box;margin-top: -7px;display:none;" type="text" placeholder="חפש ' + Data.TitleCard3 + '" />'
+                html += '<div id="CardFixedCount_' + Data.ElementIdCard3 + '" style="padding: 5px 0 13px;display:none">סה"כ תוצאות: <span></span></div>'
+                html += '<table id="PopUpWindowTable_' + Data.ElementIdCard3 + '" style="text-align:center;width:95%;font-size:medium;background-color:white"></table>'
+                html += '</div></div></div>'
+
+                $('body').append(html)
+
+
+                $("#" + Data.ElementIdCard3).focus(function () {
+                    if ($("#" + Data.ElementIdCard1).val() === "") {
+                        $("#" + Data.ElementIdCard1).focus()
+                    } else if ($("#" + Data.ElementIdCard2).val() === "") {
+                        Card2Focus()
+                    } else {
+                        $("#PopUpWindow_" + Data.ElementIdCard3).show()
+                        $("#" + Data.ElementIdCard3).blur()
+                        $('#PopUpWindowSearch_' + Data.ElementIdCard3).val('')
+                        if (Data.FocusCard3 === true) {
+                            $('#PopUpWindowSearch_' + Data.ElementIdCard3).focus()
+                        }
+
+
+                        var TestArrayDataParsCard3 = []
+                        var ArrayDataParsCard3 = []
+                        for (i = 0; i < Data.ArrayData.length; i++) {
+                            if (Data.DeleteDuplicatesCard3 === true) {
+                                if (TestArrayDataParsCard3.indexOf(Data.ArrayData[i].Card3Display) === -1 && Data.ArrayData[i].Card1Value === $("#" + Data.ElementIdCard1).val() && Data.ArrayData[i].Card2Value === $("#" + Data.ElementIdCard2).val()) {
+                                    TestArrayDataParsCard3.push(Data.ArrayData[i].Card3Display)
+                                    ArrayDataParsCard3.push({ Card3Display: Data.ArrayData[i].Card3Display, Card3Value: Data.ArrayData[i].Card3Value })
+                                }
+                            } else {
+                                if (Data.ArrayData[i].Card1Value === $("#" + Data.ElementIdCard1).val() && Data.ArrayData[i].Card2Value === $("#" + Data.ElementIdCard2).val()) {
+                                    ArrayDataParsCard3.push({ Card3Display: Data.ArrayData[i].Card3Display, Card3Value: Data.ArrayData[i].Card3Value })
+                                }
+                            }
+                        }
+
+                        if (Data.SortCard3 === true) {
+                            ArrayDataParsCard3.sort(function (a, b) {
+                                if (a.Card3Display < b.Card3Display) return -1;
+                                if (a.Card3Display > b.Card3Display) return 1;
+                                return 0;
+                            })
+                        }
+
+
+
+                        $('#PopUpWindowSearch_' + Data.ElementIdCard3).on('input', function () {
+                            PopUpWindowSearchCard3()
+                        })
+
+                        if (Data.SearchCard3 === true) {
+                            $('#PopUpWindowSearch_' + Data.ElementIdCard3).show()
+                            $('#CardFixedCount_' + Data.ElementIdCard3).show()
+                        }
+
+
+                        function PopUpWindowSearchCard3() {
+                            $('#PopUpWindowTable_' + Data.ElementIdCard3).html('')
+                            var KeyWord = $('#PopUpWindowSearch_' + Data.ElementIdCard3).val().split(' ')
+                            var Counter = 0
+                            for (var i = 0; i < ArrayDataParsCard3.length; i++) {
+                                var Exist = true
+                                for (var j = 0; j < KeyWord.length; j++) {
+                                    if (ArrayDataParsCard3[i].Card3Display.indexOf(KeyWord[j]) < 0) { Exist = false }
+                                }
+                                if (ArrayDataParsCard3[i].Card3Display === $('#PopUpWindowSearch_' + Data.ElementIdCard3).val()) { Exist = true }
+                                if (Exist === true) {
+                                    Counter += 1
+                                    $('#PopUpWindowTable_' + Data.ElementIdCard3).append('<tr><td id="PopUpWindowBt_' + Data.ElementIdCard3 + i + '" style="user-select: none;cursor:pointer;font-weight:bold;width:80%;text-align:right"><div style="text-align:center;font-size: 20px;color: #2B3A63;">' + ArrayDataParsCard3[i].Card3Display + '</div></td></tr>');
+                                    (function (i) {
+                                        $('#PopUpWindowBt_' + Data.ElementIdCard3 + i).click(function () {
+                                            if ($("#" + Data.ElementIdCard3).val() !== ArrayDataParsCard3[i].Card3Value) {
+                                                $("#" + Data.ElementIdCard3).val(ArrayDataParsCard3[i].Card3Value)
+                                                if (Data.Card4 === true) {
+                                                    $("#" + Data.ElementIdCard4).val('');
+                                                }
+                                            }
+                                            $("#PopUpWindow_" + Data.ElementIdCard3).hide()
+                                            setTimeout(function () { ScrollUp($('#' + Data.ElementIdCard3)) }, 100);
+                                            if (Data.Card4 === true) {
+                                                if (Data.OpenCard4AfterSelectCard3 === true) {
+                                                    Card4Focus()
+                                                }
+                                            }
+                                        });
+                                    })(i);
+                                };
+                            }
+                            $('#CardFixedCount_' + Data.ElementIdCard3 + ' span').html(Counter)
+                        }
+
+                        PopUpWindowSearchCard3()
+                    }
+                });
+            }
+        }
+
+        function Appendtext(Num) {
+            if (Num === 1) {
+                $('#NameKolelBoker').val('רק דתות');
+            } else if (Num === 2) {
+                $('#NameKolelZarim').val('רק דתות');
+            }
+            if ($('#NameKolelBoker').val() === 'רק דתות' || $('#NameKolelZarim').val() === 'רק דתות') {
+                $('#Lomedbkolel').show();
+            } else {
+                $('#Lomedbkolel').hide(); $('input[type=radio][name=Lomedbkolel]').prop('checked', false);
+                $('#LomedbkolelAPlace').hide(); $('input[type=radio][name=LomedbkolelAPlace]').prop('checked', false);
+                $('#WhatAreYouBusyWithDiv').hide();
+                $('#IsTheCellPhoneAvailable').hide(); $('input[type=radio][name=IsTheCellPhoneAvailable]').prop('checked', false);
+                $('#IsThereReception').hide(); $('input[type=radio][name=IsThereReception]').prop('checked', false);
+            }
+        }
+
+
+
+        function onlyHe(idElemnt) {
+            var idElemnt = idElemnt.split(',')
+            for (Id = 0; Id < idElemnt.length; Id++) {
+                (function (Id) {
+                    $(idElemnt[Id]).on('input', function (e) {
+                        var valtotal = ""
+                        var val = $(idElemnt[Id]).val().split('')
+                        for (i = 0; i < val.length; i++) {
+                            if (val[i].search(/^[a-zA-Z0-9_]+$/) === -1) {
+                                valtotal += val[i]
+                            }
+                        }
+                        $(idElemnt[Id]).val(valtotal)
+                    })
+                })(Id);
+            }
+        }
+
+
+
+        function Add_Client_Dt() {
+            $("#Client_Div").hide();
+            $("#Zeout").val(Zeout)
+            $('#FirstName').val(parent.ClientJson.Name);
+            $('#City').val(parent.ClientJson.City);
+            $('#Street').val(parent.ClientJson.Adresse);
+            $('#Tel').val(parent.ClientJson.Phone);
+            $('#Mail').val(parent.ClientJson.Mail);
+        }
+
+        function GetCountSum(Type, FiledName) {
+            //AllowSum:Field10;
+            $.ajax({
+                url: "Manage.aspx?Action=GetSumCount&TofesId=" + Json.TofesId + "&FiledName=" + FiledName + "&Type=" + Type,
+                context: Text,
+                timeout: 60000,
+            }).success(function (JsonData) {
+
+
+            }).error(function () {
+                EAlertConfirm("שגיאה בקבלת נתונים. בדוק תקשורת")
+            })
+        }
+
+
+        function GetTofesStatus() {
+            $.ajax({
+                url: "Manage.aspx?Action=GetStatus&&TofesId=" + Json.TofesId,
+                context: Text,
+                timeout: 60000,
+            }).success(function (JsonData) {
+                if (JsonData.Message === 'False') {
+                    // $("#AllMainForm").html('<div style="font-size: 19px;text-align: center;color: indianred; font-weight: bold;font-family: Assistant;margin-top: 20px;margin-bottom: 15px;"><span style="font-size:24px">שים לב!</span><br>טופס זה לא פעיל.</div>');
+                    swal({
+                        type: "error",
+                        title: 'שים לב! טופס זה לא פעיל',
+                        html: true,
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                    }, function () {
+
+                    });
+                } else {
+                    console.log('טופס פעיל')
+                }
+            }).error(function () {
+                console.log('Error GetTofesStatus')
+            })
+        }
+
+
+        //function onlyHe(Elen) {
+        //    var Id = Elen.id;
+        //    if ($("#" + Id).val().search('[a-zA-Z]') >= 0) {
+        //        $('#' + Id).val($('#' + Id).val().substring(0, $('#' + Id).val().length - 1))
+        //        MySwal("נא להזין בעברית בלבד", Id); return false;
+        //    }
+        //}
+
+
+        function ZeoutCheck() {
+
+            $("#ZeoutCheckSave").hide()
+            $("#ZeoutCheckWait").show()
+            setTimeout(function () {
+                ZeoutNumber = $("#ZeoutCheckText").val();
+
+                if ($.isNumeric(ZeoutNumber) === false) { LoginSwal("נא להקיש מספר זהות בספרות בלבד, ללא סימנים", "ZeoutCheckText"); return false };
+
+                for (var Elem in MatrimJson) {
+                    var KidZeout = MatrimJson[Elem].Name.split("|")[0].trim()
+                    if (KidZeout === ZeoutNumber) {
+                        OpenPage(KidZeout, MatrimJson[Elem].Name.split("|")[1], MatrimJson[Elem].Name.split("|")[2]);
+                        return false;
+                    }
+
+                }
+
+                LoginSwal("מספר הזהות שהוקש לא נמצא במערכת.", "ZeoutCheckText"); return false;
+            }, 1000)
+
+
+        }
+
+        function OpenPage(Zeout, Name, Points) {
+            $("#FirstName").val(Name).attr('disabled', 'disabled')
+            $("#Zeout").val(Zeout).attr('disabled', 'disabled')
+            $("#OldPoints").val(Points).attr('disabled', 'disabled')
+            $("#PointsLeft").html(Points)
+
+            $('#ZeoutCheck').hide();
+            $('#WaitDiv').hide();
+            getFormList();
+            $('#AllMainForm').show();
+
+
+        }
+
+        function LoginSwal(Text, Id) {
+            swal({
+                type: "error",
+                title: Text,
+                showConfirmButton: true,
+                allowOutsideClick: false,
+            }, function () {
+                $('#' + Id).focus()
+                $('#' + Id).select();
+                ScrollUp('#' + Id)
+                setTimeout(function () {
+                    $("#ZeoutCheckSave").show()
+                    $("#ZeoutCheckWait").hide()
+                }, 100);
+            });
+            return false;
+        }
+
+
+
+
+        function GetPreData_UserName() {
+            $.ajax({
+                url: "Manage.aspx?Action=GetPreData_UserName&TofesId=" + Json.TofesId,
+                data: "UserName=ASD" + encodeURIComponent("39660675") + "&Password=SDF",
+                type: 'POST',
+                context: Text,
+                timeout: 60000,
+            }).success(function (JsonData) {
+            }).error(function () {
+                ParsePreData("ERROR")
+            });
+        }
+
+
+
+        function htmlDecode(value) {
+            return $("<textarea/>").html(value).text();
+        }
+        function htmlEncode(value) {
+            return $('<textarea/>').text(value).html();
+        }
+
+        function decode(str) {
+            return decodeURIComponent(str.replace(/\+/g, " "));
+        }
+
+        function MySwal(Text, Id) {
+            swal({
+                type: "error",
+                title: Text,
+                showConfirmButton: true,
+                allowOutsideClick: false,
+            }, function () {
+                $('#' + Id).focus()
+                $('#' + Id).select();
+                ScrollUp('#' + Id)
+                setTimeout(function () {
+                    $("#SaveDiv").show()
+                    $("#WaitDiv").hide()
+                }, 100);
+            });
+        }
+
+
+
+        function ResetForm() {
+            swal({
+                title: "איפוס המידע השמור בשרתים",
+                text: "על מנת לבצע איפוס, נא להקליד \"אני מאשר\".",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "אישור",
+                cancelButtonText: "ביטול",
+                inputPlaceholder: "הקלד כאן את המילים: אני מאשר",
+                showLoaderOnConfirm: true,
+            }, function (inputValue) {
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("נא להקליד: אני מאשר");
+                    return false
+                }
+                if (inputValue !== "אני מאשר" && inputValue !== "tbh ntar") {
+                    swal.showInputError("נא להקליד: אני מאשר");
+                    return false
+                }
+                $.ajax({
+                    url: "Manage.aspx?Action=ResetForm&MosadId=" + Json.MosadId + "&TofesId=" + Json.TofesId,
+                    context: Text,
+                    timeout: 16000,
+                }).success(function (JsonData) {
+                    if (JsonData.Status === 'Error' || JsonData.Result === 'Error') {
+                        EAlertConfirm("שגיאה", JsonData.Message)
+                    }
+                    else {
+                        IAlertConfirm("הפעולה בוצעה בהצלחה");
+                    }
+                }).error(function () {
+                    EAlertConfirm("שגיאה בקבלת נתונים. בדוק תקשורת")
+                });
+            });
+
+        }
+
+        //function openBankPicker() {
+        //    //$('#Bank').focus();
+        //    $('#Bank').blur();
+        //    $('#BankPickerDiv').show()
+        //}
+
+
+        function GetStatus() {
+            $.ajax({
+                url: "Manage.aspx?Action=GetStatus&TofesId=" + Json.TofesId,
+                context: Text,
+                timeout: 60000,
+            }).success(function (JsonData) {
+                console.log(JsonData)
+            }).error(function () {
+                console.log("Error_GetStatus")
+            });
+        }
+
+
+        function onlyNum(id) {
+            $('#' + id).val($('#' + id).val().replace(".", ""));
+            if ($.isNumeric($('#' + id).val()) === false && $('#' + id).val().length > 1) { $('#' + id).val($('#' + id).val().substring(0, $('#' + id).val().length - 1)) }
+            if ($.isNumeric($('#' + id).val()) === false) { $('#' + id).val(''); }
+        }
+
+        function SignCancel() {
+            $('#SignPad,#WaitDiv').hide();
+            $('#SaveDiv').show();
+        }
+
+
+
+
+        function Calculate() {
+
+
+
+        }
+
+
+
+
+
+
+
+        //feature_1
+        function CloseNatsig() {
+            $('#SnifChoose').hide();
+            setTimeout(function () { ScrollUp($('#Snif1')) }, 100);
+        }
+
+        //feature_1
+        function SetSnif(SnifName) {
+            $("#Snif1").val(SnifName)
+            CloseNatsig()
+        }
+
+
+        function ScrollUp(Input) {
+            $('html, body').animate({ scrollTop: $(Input).position().top - 200 }, 'slow');
+        }
+
+
+
+        function EAlertConfirm(message, insidetext) {
+            swal({
+                type: "error",
+                title: message, text: insidetext,
+                timer: 10000,
+                showConfirmButton: true,
+                allowOutsideClick: false,
+            });
+        }
+        function IAlertConfirm(message, insidetext) {
+            swal({
+                type: "info",
+                title: message, text: insidetext,
+                timer: 30000,
+                html: true,
+                showConfirmButton: true,
+                allowOutsideClick: false,
+            });
+        }
+        function CheckFilled(Name, ErrorString) {
+            if ($("#" + Name).val() === '') {
+                swal({
+                    type: "error",
+                    title: ErrorString,
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                }, function () {
+                    setTimeout(function () { $('#' + Name).focus() }, 100);
+                });
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+        function EnableForm(Enable) {
+            $.ajax({
+                url: "Manage.aspx?Action=EnableForm&MosadId=" + Json.MosadId + "&TofesId=" + Json.TofesId + "&Enable=" + encodeURIComponent(Enable),
+                context: Text,
+                timeout: 16000,
+            }).success(function (JsonData) {
+                if (JsonData.Status === 'Error' || JsonData.Result === 'Error') {
+                    EAlertConfirm("שגיאה", JsonData.Message)
+                }
+                else {
+                    IAlertConfirm("הפעולה בוצעה בהצלחה");
+                }
+            }).error(function () {
+                EAlertConfirm("שגיאה בקבלת נתונים. בדוק תקשורת")
+            });
+        }
+
+
+        function GetExcel() {
+
+            var url = "Manage.aspx?Action=GetExcel&MosadId=" + Json.MosadId + "&TofesId=" + Json.TofesId
+            var FormData = '<form action="' + url + '" method="post" target="_blank" style="display:none">'
+            for (var Element in Json.FormElements) {
+                var JsonElement = Json.FormElements[Element]
+                if (JsonElement.Type === "Margin" || JsonElement.Type === "List" || JsonElement.Type === "Koteret" || JsonElement.DbName === undefined) { continue; }
+                FormData += '<input type="text" name="' + JsonElement.DbName + '" value="' + JsonElement.fieldName.replace(/"/g, '&quot;').replace(/<b>/g, '').replace(/<\/b>/g, '') + '" />'
+
+            }
+
+            FormData += '</form>'
+            var form = $(FormData);
+            $('body').append(form);
+            form.submit();
+
+
+        }
+
+        function IsVisible(Element) {
+            if (Element === undefined) return false
+            var element = document.getElementById(Element);
+            while (element.parentNode) {
+                if ($("#" + element.id).css('display') === 'none') return false
+                element = element.parentNode;
+            }
+            return true
+        }
+
+
+        function swalMultiLanguage(JsonElement) {
+            MySwalAndType('<span class="He">חובה למלא ' + JsonElement.fieldNameShow[0] + '</span><span class="En">Mandatory to fill ' + JsonElement.fieldNameShow[1] + '</span>', JsonElement.ElementId, 'error');
+        }
+
+        function Go_To(TofesId) {
+
+
+            // var jsonData = JSON.stringify(studentData)
+            // var encodedData = encodeURIComponent(jsonData);
+            // window.location.href = TofesId + ".html?MasofId=" + MasofId + "&ClientId=" + ClientId + "&Version=10" + "&CheckPhoneCode=" + 
+            // parseInt( $('#LoginTelCodeInputVal').val())+ "&Tel1=" + $('#LoginTelInput').val() + "&data="+encodedData ;
+
+
+            var jsonData = JSON.stringify(studentData);
+            var encodedData = encodeURIComponent(jsonData);
+
+            // Prepare the data to be sent
+            var data = {
+                MasofId: MasofId,
+                ClientId: ClientId,
+                Version: 10,
+                CheckPhoneCode: parseInt($('#LoginTelCodeInputVal').val()),
+                Tel1: $('#LoginTelInput').val(),
+                data: encodedData
+            };
+            $.ajax({
+                    url: 'https://mlcrplus.info/2000.html',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        // Handle the response from the server
+                        console.log('Success:', response);
+                        // Optionally, you can redirect to another page here
+                        // window.location.href = 'https://example.com/another-page';
+                    },
+                    error: function(error) {
+                        // Handle any errors that occur
+                        console.log('Error:', error);
+                    }
+                });
+            // TofesId = "https://mlcrplus.info/" +TofesId + ".html"
+            // console.log(TofesId)
+            // // Use $.post to send the data to the server
+            // $.post(TofesId , data, function(response) {
+            //     // Handle the response from the server
+            //     console.log(response);
+            //     // You can redirect or perform any other action based on the response
+            //     // window.location.href = "some_other_page.html";
+            // });
+
+
+        }
+
+        function AddServerResponseStudentData(data) {
+            var serverrResponseStudentData = []
+            
+            for (var student in data){
+                if (data[student][13].indexOf("600")  === 0 || data[student][13].indexOf("70")  === 0 || data[student][13].indexOf("72")  === 0){
+                    var studentDataObject = {}
+                    studentDataObject["Zeout"] = data[student][0]
+                    studentDataObject["FirstName"] = data[student][9]  
+                    studentDataObject["Family"] = data[student][10]  
+
+                    if (data[student][13].indexOf("600")  === 0){
+                        studentDataObject["KolelBoker"] = true
+                        studentDataObject["KolelZarim"] = true
+                        
+                    }else if (data[student][13].indexOf("70")  === 0){
+                        studentDataObject["KolelBoker"] = true
+                        studentDataObject["KolelZarim"] = false
+
+                    }else if (data[student][13].indexOf("72")  === 0){
+                        studentDataObject["KolelBoker"] = false
+                        studentDataObject["KolelZarim"] = true
+
+                    }
+                    if  (data[student][9] == "מאיר"){
+                        studentDataObject["KolelBoker"] = true
+                        studentDataObject["KolelZarim"] = false
+                    }
+
+                    if  (data[student][9] == "רבקה"){
+                        studentDataObject["KolelBoker"] = false
+                        studentDataObject["KolelZarim"] = true
+                    }
+                    serverrResponseStudentData.push(studentDataObject)
+                }
+                
+            }
+
+            studentData = serverrResponseStudentData
+                
+            
+           
+        }
+
+        // בדיקת תקינות נתונים
+        function CheckMail(txt) {
+            return /([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+/.test(txt)
+        }
+
+        function ValidateID(str) {
+            var IDnum = String(str);
+            if ((IDnum.length > 9) || (IDnum.length < 5)) return false;
+            if (isNaN(IDnum)) return false;
+            if (IDnum.length < 9) while (IDnum.length < 9) IDnum = '0' + IDnum;
+            var mone = 0;
+            var incNum;
+            for (var i = 0; i < 9; i++) {
+                incNum = Number(IDnum.charAt(i));
+                incNum *= (i % 2) + 1;
+                if (incNum > 9) incNum -= 9;
+                mone += incNum;
+            }
+            if (mone % 10 === 0) return true; else return false
+        }
+
+        function CheckDate(txt) {
+            txt = txt.split('/')[1] + "/" + txt.split('/')[0] + "/" + txt.split('/')[2]
+            return /((^(10|12|0?[13578])([/])(3[01]|[12][0-9]|0?[1-9])([/])((1[8-9]\d{2})|([2-9]\d{3}))$)|(^(11|0?[469])([/])(30|[12][0-9]|0?[1-9])([/])((1[8-9]\d{2})|([2-9]\d{3}))$)|(^(0?2)([/])(2[0-8]|1[0-9]|0?[1-9])([/])((1[8-9]\d{2})|([2-9]\d{3}))$)|(^(0?2)([/])(29)([/])([2468][048]00)$)|(^(0?2)([/])(29)([/])([3579][26]00)$)|(^(0?2)([/])(29)([/])([1][89][0][48])$)|(^(0?2)([/])(29)([/])([2-9][0-9][0][48])$)|(^(0?2)([/])(29)([/])([1][89][2468][048])$)|(^(0?2)([/])(29)([/])([2-9][0-9][2468][048])$)|(^(0?2)([/])(29)([/])([1][89][13579][26])$)|(^(0?2)([/])(29)([/])([2-9][0-9][13579][26])$))/.test(txt)
+        }
+        function validatePhone(phone) {
+            //02,03,04,08,09
+            var re = /^[0][2|3|4|8|9]{1}[0-9]{7}$/g;
+            if (re.test(phone)) {
+                return true;
+            }
+            //07
+            re = /^[0][7][0-9]{1}[0-9]{7}$/g;
+            if (re.test(phone)) {
+                return true;
+            }
+            //mobilePhone
+            re = /^[0][5][0|2|3|4|5|9|8|6]{1}[0-9]{7}$/g;
+            if (re.test(phone)) {
+                return true;
+            }
+            return false;
+        }
+
+        function getDate(Start, End) {
+            if (End === 'Today') {
+                End = new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear()
+            }
+            if (Start === 'Today') {
+                Start = new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear()
+            }
+
+            var date1 = Start.split('/')
+            var date2 = End.split('/');
+            date1 = new Date(date1[2], date1[1], date1[0]);
+            date2 = new Date(date2[2], date2[1], date2[0]);
+
+            date1 = parseInt(date1.getTime() / 1000);
+            date2 = parseInt(date2.getTime() / 1000);
+
+            return ((date2 - date1) / 60 / 60 / 24).toFixed()
+        }
+        ////////////////////////////////
+        function goto1831(message) {
+            var referralForm, parameters = '';
+            var details = { FirstName: '', Family: '', Tel1: '', Zeout: '', Darkon: '', City: '', Street: '', StreetNum: '', Mail: '' };
+            $.each(details, function (key, value) {
+                details[key] = $('#' + key).val();
+            })
+            formType === 'insert' ? referralForm = 1088 : referralForm = 1703;
+            details.referralForm = referralForm;
+            details.Zihuy = TypeZihuy;
+            details.moreDetails = moreDetailsToSendTo1831;
+            details.ActionLanguage = ActionLanguage;
+            $.each(details, function (key, value) {
+                parameters += '&' + key + '=' + value;
+            })
+            parameters = parameters.substring(1, parameters.length);
+            var BtTex = '';
+            ActionLanguage === 'En' ? BtTex = "OK" : BtTex = "אישור"
+            swal({
+                title: '<span class="He">הנכם מועברים לטופס פתיחת קו לצורך השלמת תהליך הרישום</span><span class="En">You are transferred to the line opening form in order to complete the registration process</span>',
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: BtTex,
+                closeOnConfirm: true,
+                allowOutsideClick: false,
+                html: true
+            }, function (isConfirm) {
+                Go_To('1831', parameters);
+            })
+            setTimeout(function () {
+                if (ActionLanguage === "En") { $('.En').show(); $('.He').hide(); } else if (ActionLanguage === "He") { $('.En').hide(); $('.He').show() }
+            }, 20)
+            setTimeout(function () {
+                Go_To('1831', parameters);
+            }, 4000)
+        }
+
+
+
+
+        
+
+
+
+    </script>
+</head>
+
+<body dir="rtl" style="background-color: #eee;-webkit-user-select: none;" onscroll="UpdateClick()">
+
+    <!--  <div id="TopMenuBg" style="position:fixed;background-color:white;height:40px;top:0;width:100%;text-align:left;padding-top:10px;padding-bottom:10px;white-space:normal;font-size:0px;opacity:0.7"></div>
+      <div id="TopMenu" style="position:fixed;height:40px;top:0;width:100%;text-align:center;padding-top:10px;padding-bottom:10px;white-space:normal;font-size:0px">
+          <input class="Bt" style="margin:4px ;font-size:medium;padding:4px 10px 4px 10px;border-radius:3px;" type="button" value="שלח טופס" onclick="$('html, body').scrollTop(5000); SendData()" />
+          <input class="Bt" style="margin:4px ;background-color:#ff6a00;font-size:medium;padding:4px 10px 4px 10px;border-radius:3px;" type="button" value="חזרה לנדרים פלוס" id="BackToNedarimTop" onclick="if (MasofId !== '') parent.GoToMenu('Choose')" />
+      </div>-->
+    <!--כפתורים עליונים-->
+    <div id="BackToNedarim" style="text-align:center;margin-top:10px;display:none"> <input class="Bt"
+            style="background-color:#ff6a00;display:inline-block;min-width:40%;padding:8px" type="button"
+            value="חזרה לנדרים פלוס" id="BackToNedarimBottom" onclick="if (MasofId !== '') parent.closeIFrame()" />
+    </div>
+    <div id="AdminBt" style="text-align:center;margin-top:10px;display:none">
+        <input class="Bt" style="background-color:#006400;display:inline-block;min-width:20%;padding:8px;cursor:pointer"
+            type="button" value="ייצוא לאקסל" onclick="GetExcel()" />
+        <input class="Bt"
+            style="background-color:indianred;display:inline-block;min-width:20%;padding:8px;cursor:pointer"
+            type="button" value="איפוס המאגר" onclick="ResetForm()" />
+        <div style="width:50%;font-size:0px;max-width:300px;margin-right:auto;margin-left:auto">
+            <!--מצב טופס-->
+            <div
+                style="margin-top:10px;margin-bottom:5px;padding:3px 0px;background-color:white; border-radius:5px;width:100%;text-align:center;margin-right:auto;margin-left:auto;font-family: 'Assistant', sans-serif;font-size:small;color:#2B3A63;font-weight:bold">
+                מצב טופס:</div>
+            <input class="Bt"
+                style="background-color:#38C232;display:inline-block;width:48%;margin-left:2%;padding:8px;cursor:pointer"
+                type="button" value="פעיל" onclick="EnableForm('True')" />
+            <input class="Bt"
+                style="background-color:#e60a00;display:inline-block;width:48%;margin-right:2%;padding:8px;cursor:pointer"
+                type="button" value="לא פעיל" onclick="EnableForm('False')" />
+        </div>
+    </div>
+    <!--כל הטופס-->
+    <div
+        style="text-align:right;background-color:white;border-radius:10px;margin-top:10px;width:92%;margin-left:auto;margin-right:auto;padding-bottom:20px;padding-top:20px;max-width:600px">
+        <div
+            style="float:right;width: 40px; right: 0; margin-right: 10px; font-weight: 600; font-size: small; -webkit-user-select: none; background-color: #f1f1f1; padding: 3px 5px; border-radius: 3px;">
+            <span id="FlagEn" style="cursor: pointer; display: inline;" class="He"
+                onclick="ChangeLanguage(&#39;En&#39;)">English</span><span id="FlagIl" class="En"
+                style="cursor: pointer; display: none;" onclick="ChangeLanguage(&#39;He&#39;)">עברית</span>
+        </div>
+        <div style="height: 5px;"></div>
+        <!-- <div style="text-align:center;min-height:158px;font-size:0px"><img id="MainLogo" style=" max-width: 100%;max-height:180px;" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" /></div>-->
+        <div id="koteret">
+            <div style="text-align:center;margin:20px;color:#2B3A63;font-family:assistant,Arial;">
+                <h2 id="MainTitle"> </h2>
+            </div>
+            <div id="TelephoneRegistration"
+                style="color: indianred; font-family: assistant,Arial; font-size: 17px; font-weight: bold; text-align: center; margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+                <span class="He">
+                    אם אתם לא מצליחים להירשם בטופס התקשרו למספר 0747871914 <BR> בימים א-ה בין השעות 08:00-24:00 <BR>
+                    ביום ו
+                    עד 14:00 ובמוצאי שבת משעה אחרי צאת שבת
+                </span>
+                <span class="En">
+                    If you are unable to register on the form <BR> call 0747871914 on Sunday-Friday between 08:00 and
+                    24:00
+                    <BR> on Friday until 14:00 and on Saturday evening from an hour after Shabbat ends
+                </span>
+            </div>
+            <div id="reportBag"
+                style="color: indianred; font-family: assistant,Arial; font-size: 17px; font-weight: bold;  text-align: center; margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+                <span class="He">לדיווח על תקלה ניתן לשלוח מייל 4146396@gmail.com</span>
+                <span class="En">To report a malfunction, you can send an email to 4146396@gmail.com</span>
+            </div>
+            <!--<div style=" text-align: center; margin-top: -10px; color: #00637f;font-family:Assistant,Arial;    margin-bottom: 10px;">מאת מוטי ויטמן</div>-->
+            <hr style="margin-right:20%;margin-left:20%" />
+        </div>
+        <div style="text-align:center;margin:40px;font-family:Assistant,Arial;color:#808080;display:none" id="WaitDiv2">
+            <img src="waitnew.gif" style="width:50px;" /><br />נא להמתין. בודק אם קיימים נתונים...
+        </div>
+
+
+        <style>
+            .TypeZihuylabel {
+                width: 47%;
+                display: inline-block;
+                height: 100%;
+                border-radius: 4px;
+                background: #9e9e9e;
+                color: white;
+                padding: 4px 0;
+                box-sizing: border-box;
+                text-align: center;
+                cursor: pointer;
+                border: 3px solid #c9c9c9;
+            }
+
+            .TypeZihuyinput {
+                display: none;
+            }
+
+            .En {
+                display: none;
+            }
+
+            .SubKoteret {
+                font-family: 'Assistant', sans-serif;
+                font-size: larger;
+                color: cadetblue;
+                font-weight: bold;
+                text-align: right;
+                padding-right: 30px;
+                width: 90%;
+                margin-top: 20px;
+                margin-bottom: 7px;
+                -webkit-user-select: none;
+            }
+
+            .SubKoteret2 {
+                font-family: 'Assistant', sans-serif;
+                font-size: large;
+                color: #996b20;
+                font-weight: bold;
+                text-align: right;
+                padding-right: 30px;
+                width: 100%;
+                margin-top: 20px;
+                margin-bottom: 15px;
+                -webkit-user-select: none;
+            }
+
+            a {
+                color: indianred;
+                background-color: transparent;
+                text-decoration: underline;
+            }
+            .MainBts {
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 402px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+            border-radius: 7px;
+            color: white;
+            font-size: 21px;
+            cursor: pointer;
+            max-width: 75%;
+            box-shadow: 2px 4px 7px #9da4a9;
+            font-weight: 600;
+            background-color: #06496f;
+            text-align: center;
+        }
+
+        .MainBts:hover {
+            background: rgb(96 125 139 / 90%);
+        }
+
+            @media screen and (max-width: 500px) {
+
+                .sweet-alert,
+                .showSweetAlert,
+                .visible {
+                    margin-top: -320px !important;
+                }
+            }
+        </style>
+
+
+        <div id="FixedWaiting"
+            style="width: 100%; height: 100vh; top: 0px; left: 0px; position: fixed; background: rgba(66, 66, 66, 0.47); z-index: 19; display: none;">
+            <img style="position: absolute; background: white; border-radius: 20%; top: 310.5px; left: 722px; width: 75px; height: 75px;"
+                src="waitnew.gif" alt="waiting">
+        </div>
+
+        <div id="CardLogin" style="max-width: 310px; margin: 50px auto 0; width: 95%;" dir="rtl">
+            <div id="LogiKodKollelDiv"
+                style="margin: 24px auto 0; height: 39px; position: relative; background: gray; border-radius: 5px;">
+                <label class="labelEn" for="LoginKodKollel"
+                    style="z-index: 1; position: absolute; top: -11px; background: white; padding: 0 5px; right: 5px;"><span
+                        class="En">Enter a kollel kod:</span></span><span class="He">הזן קוד כולל:</span></label>
+                <input id="LoginKodKollel" type="tel" dir="ltr" autocomplete="off" maxlength="10"
+                    style="text-align: center; font-size: 18px; font-weight: 600; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; border: 1px solid #a2a2a2; background: #ffffff !important; box-sizing: border-box;">
+            </div>
+            <div id="LoginPasswordDiv"
+                style="margin: 24px auto 0; height: 39px; position: relative; background: gray; border-radius: 5px;">
+                <label class="labelEn" for="LoginPassword"
+                    style="z-index: 1; position: absolute; top: -11px; background: white; padding: 0 5px; right: 5px;"><span
+                        class="En">Enter a personal password:</span></span><span class="He">הזן ססמא
+                        אישית:</span></label>
+                <input id="LoginPassword" type="tel" dir="ltr" autocomplete="off" maxlength="10"
+                    style="text-align: center; font-size: 18px; font-weight: 600; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; border: 1px solid #a2a2a2; background: #ffffff !important; box-sizing: border-box;">
+            </div>
+            <div style="margin: 24px auto 0; height: 39px; position: relative; background: gray; border-radius: 5px;">
+                <label class="labelEn" for="LoginTelInput"
+                    style="z-index: 1; position: absolute; top: -11px; background: white; padding: 0 5px; right: 5px;"><span
+                        class="En">Israeli phone number:</span><span class="He">הזן מספר טלפון:</span></label>
+                <input id="LoginTelInput" type="tel" dir="ltr" autocomplete="off" maxlength="10"
+                    style="text-align: center; font-size: 18px; font-weight: 600; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; border: 1px solid #a2a2a2; background: #ffffff !important; box-sizing: border-box;">
+            </div>
+            <div id="LoginTelCodeInput"
+                style="display: none; margin: 24px auto 0; height: 39px; position: relative; background: gray; border-radius: 5px;">
+                <label class="labelEn" for="LoginTelCodeInputVal"
+                    style="z-index: 1; position: absolute; top: -11px; background: white; padding: 0 5px; right: 5px;"><span
+                        class="En">Enter the last 4 digits:</span><span class="He">הזן 4 ספרות אחרונות של המספר שחייג
+                        אליך:</span></label>
+                <input id="LoginTelCodeInputVal" type="tel" dir="ltr" autocomplete="off" maxlength="10"
+                    style="text-align: center; font-size: 18px; font-weight: 600; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 4px; border: 1px solid #a2a2a2; background: #ffffff !important; box-sizing: border-box;">
+            </div>
+            <div style="text-align: center; margin: 10px auto; box-sizing: border-box;display:none;" id="SendCodeDuble">
+                <div class="Bt"
+                    style="padding: 5px 0; background: indianred; width: 410px; max-width: 100%; margin: auto; box-sizing: border-box; border: 0;"
+                    onclick="SubminLogin('SendCodeDouble')"><span class="En">I didn't receive a call, call
+                        again</span><span class="He">לא קיבלתי צינתוק,
+                        תשלחו שוב</span></div>
+            </div>
+            <div style="text-align: center; margin: 10px auto; box-sizing: border-box;" id="LoginSubmit">
+                <div class="Bt"
+                    style="padding: 5px 0; background: #607d8b; width: 310px; max-width: 100%; margin: auto;box-sizing:border-box;border: 0;"
+                    onclick="SubminLogin()"><span class="En">OK</span><span class="He">אישור</span></div>
+            </div>
+            <div style="text-align: center; margin: 10px auto; box-sizing: border-box; display: none;"
+                id="SkippingIdentification">
+                <div class="Bt"
+                    style="padding: 5px 0;  width: 410px; max-width: 100%; margin: auto; box-sizing: border-box; border: 0;"
+                    onclick="skipVerification()">
+                    <span class="En">Skipping the identification</span>
+                    <span class="He"> דילוג על האימות </span>
+                </div>
+            </div>
+            <div style="text-align:center;margin:10px;font-family:Assistant,Arial;color:#808080;display:none"
+                id="LoginWait"><img src="waitnew.gif" style="width:50px;"><br><span>נא
+                    להמתין...</span></div>
+            <div style="height:200px"></div>
+        </div>
+
+        <script>
+            var triesNumber = 0;
+            ChangeLanguage('He');
+            onlyNum('LoginKodKollel');
+            function MySwalAndType(Text, Id, Type) {
+                swal({
+                    type: Type || "error",
+                    title: Text,
+                    showConfirmButton: true,
+                    allowOutsideClick: false,
+                    confirmButtonText: (ActionLanguage === "En" ? "OK" : "אישור"),
+                    html: true,
+                }, function () {
+                    $('#' + Id).focus();
+                    ScrollUp('#' + Id);
+                    setTimeout(function () {
+                        $("#SaveDiv").show();
+                        $("#WaitDiv").hide();
+                    }, 100);
+                });
+
+                setTimeout(function () {
+                    if (ActionLanguage === "En") { $('.En').show(); $('.He').hide(); } else if (ActionLanguage === "He") { $('.En').hide(); $('.He').show() }
+                }, 20)
+            }
+
+
+            function FixedWaitingStyle() {
+                $('#FixedWaiting img').css('top', (($('#FixedWaiting').height()) / 2) - ($('#FixedWaiting img').height() / 2))
+                $('#FixedWaiting img').css('left', (($('#FixedWaiting').width()) / 2) - ($('#FixedWaiting img').width() / 2))
+            }
+
+
+            $(document).ready(function () {
+                FixedWaitingStyle();
+                $('#LoginTelInput,#LoginTelCodeInputVal').on('input', function () {
+                    onlyNum(this.id)
+                })
+                $('#LoginZeoutDarkonInputVal').on('input', function () {
+                    if ($('input[name=TypeZihuy]:checked').val() === "Zeout") {
+                        onlyNum(this.id)
+                    }
+                })
+                $('#LoginTelCodeInputVal').on('keyup', function (event) {
+                    if ($('#LoginTelCodeInputVal').val().length === 4) {
+                        SubminLogin()
+                        $('#LoginTelCodeInputVal').blur()
+                    }
+                    if (event.keyCode === 13) {
+                        SubminLogin()
+                    }
+                })
+            })
+
+
+            var ActionLanguage
+            function ChangeLanguage(Action) {
+                ActionLanguage = Action
+                if (Action === "En") {
+                    $('.En').show();
+                    $('.labelEn').css({ direction: "ltr", left: "5px", right: "auto" });
+                    $('div[style*="text-align: right"],div[style*="text-align:right"],.Koteret').attr('dir', 'ltr');
+                    $('div[style*="text-align: right"],div[style*="text-align:right"],.Koteret').css('text-align', 'left');
+                    $('.He').hide();
+                    $('body').attr('dir', 'ltr');
+                    $('.fieldName').addClass('fieldNameEn');
+                    $('input,textarea').css('text-align', 'left');
+                    $('#LoginZeoutDarkonInputVal').css('text-align', 'center');
+                    $('#LoginTelInput').css('text-align', 'center');
+                    $('#LoginTelCodeInputVal').css('text-align', 'center');
+                    $('input[placeholder]').each(function () {
+                        if (typeof ($(this).attr('id')) !== "undefined") {
+                            if ($(this).attr('id').indexOf('PopUpWindowSearch') === -1) {
+                                $(this).attr('placeholder', 'dd/mm/yyyy');
+                            }
+                        }
+                    })
+
+                } else if (Action === "He") {
+                    $('.En').hide(); $('.labelEn').css({ direction: "rtl", right: "5px", left: "auto" })
+                    $('.He').show()
+                    $('div[style*="text-align: left"],div[style*="text-align:left"]').attr('dir', 'rtl');
+                    $('div[style*="text-align: left"],div[style*="text-align:left"]').css('text-align', 'right');
+                    $('body').attr('dir', 'rtl');
+                    $('.fieldName').removeClass('fieldNameEn');
+                    $('input,textarea').css('text-align', 'right');
+                    $('#LoginZeoutDarkonInputVal').css('text-align', 'center');
+                    $('#LoginTelInput').css('text-align', 'center');
+                    $('#LoginZeoutDarkonInputVal').css('text-align', 'center');
+                    $('#LoginTelInput').css('text-align', 'center');
+                    $('#LoginTelCodeInputVal').css('text-align', 'center');
+                    $('input[data-type=Tel]').css('text-align', 'left');
+                    $('#Mail').css('text-align', 'left');
+                    $('input[placeholder]').each(function () {
+                        if (typeof ($(this).attr('id')) !== "undefined") {
+                            if ($(this).attr('id').indexOf('PopUpWindowSearch') === -1) {
+                                $(this).attr('placeholder', 'בתבנית 01/01/2000');
+                            }
+                        }
+                    })
+                }
+                for (var i = 0; i < centerElements.split(',').length; i++) {
+                    $('#' + centerElements.split(',')[i]).css('text-align', 'center');
+                }
+                // for (var i = 0; i < centerElements.split(',').length; i++) {
+                //     $('.' + centerClasses.split(',')[i]).each(function () {
+                //         $(this).css('text-align', 'center');
+                //     });
+                // }
+            }
+
+
+            function validationLogin(target) {
+                var toReturn = true;
+                var message = '';
+                var id = '';
+                $('input').each(function () {
+                    if ($(this).val() === '') {
+                        if (IsVisible($(this).attr('id'))) {
+                            toReturn = false;
+                            message = $('label[for=' + $(this).attr('id') + ']').html();
+                            id = $(this).attr('id');
+                            return false;
+                        }
+                    }
+                })
+                if (toReturn === false) {
+                    MySwalAndType(message, id);
+                    return false;
+                }
+                if (!validatePhone($('#LoginTelInput').val())) { MySwalAndType('<span class="En">Wrong phone</span><span class="He">טלפון שגוי</span>', "LoginTelInput"); return false }
+            }
+            function disableInputs(divId) {
+                $('#' + divId + ' :input').each(function () {
+                    if (IsVisible($(this).attr('id'))) {
+                        $(this).attr('disabled', 'disabled');
+                    }
+                })
+            }
+
+            var loginUrl = "https://000.mllcr.info/";
+            function SubminLogin(SendCodeDuoble) {
+                var x = loginUrl + "?action=GetStudentsByid&id=" + $('#LoginKodKollel').val() + '&Phone=' + +$('#LoginTelInput').val() + '&password=' + $('#LoginPassword').val()
+                console.log(x)
+                if ($('#LoginTelCodeInput').css('display') === 'none' || SendCodeDuoble === "SendCodeDouble") {
+                    $('#SendCodeDuble,#SendCodeDubleSwiteAlert').hide()
+                    clearTimeout(SendCodeDubleTimeout)
+                    if (SendCodeDuoble !== 'SendCodeDouble') {
+                        if (validationLogin() === false) { return false };
+                        disableInputs('CardLogin');
+                    }
+                    $('#FixedWaiting').show();
+                    $.ajax({
+                        url: loginUrl + "?action=GetStudentsByid&id=" + $('#LoginKodKollel').val() + '&Phone=' + +$('#LoginTelInput').val() + '&password=' + $('#LoginPassword').val(),
+                        context: Text,
+                        timeout: 180000,
+                    }).success(function (JsonData) {
+                        JsonData = JSON.parse(JsonData)
+                        if (JsonData.Status === 'failed') {
+                            MySwalAndType(JsonData.message, 'MainTitle');
+                            return false;
+                        }
+                        if (JsonData.studentStatus === false) {
+                            if (ActionLanguage === "He") {
+                                MySwalAndType(JsonData.message.split(';')[0], "LoginZeoutDarkonInputVal");
+                            }
+                            else {
+                                MySwalAndType(JsonData.message.substring(JsonData.message.split(';')[1]), "LoginZeoutDarkonInputVal");
+                            }
+                            return false
+                        }
+                        if (JsonData.CheckPhoneCodeStatus === false) {
+                            moreDetailsToSendTo1831 = 'נתונים שחזרו מהשרת:' + JSON.stringify(JsonData);
+                            swal({
+                                title: '<span class="He">מספר הטלפון שלכם חסום לקבלת צינתוקים.</span><span class="En">Your phone number is blocked from receiving chats.</span>',
+                                text: '<span class="He">הנכם מועברים לטופס בקשה לפתיחת קו לקבלת צנתוקים.<BR>אחרי שתוכלו לקבל צינתוקים - תהיה אפשרות למלא את הטופס.</span><span class="En">You are transferred to a request form for opening to receive messages.<BR>After you can receive messages you can fill out the form.</span>',
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonText: (ActionLanguage === "En" ? "OK" : "אישור"),
+                                html: true,
+                            }, function () {
+                              Go_To('1831');
+                            }
+                            );
+                            setTimeout(function () {
+                                if (ActionLanguage === "En") { $('.En').show(); $('.He').hide(); } else if (ActionLanguage === "He") { $('.En').hide(); $('.He').show() }
+                            }, 20)
+                            return false;
+                        }
+                        isVerification = true;
+                        $('#LoginTelCodeInput').show()
+                        $('input[type=radio][name=TypeZihuy]').attr('disabled', 'disabled')
+                        $('#LoginZeoutDarkonInputVal').attr('disabled', 'disabled')
+                        $('#LoginTelInput').attr('disabled', 'disabled')
+                        MySwalAndType(
+                            '<div class="He">המערכת מצנתקת אליך לטלפון  </br>' + $('#LoginTelInput').val() + '</br> הזן את ה4 ספרות האחרונות של המספר שצינתק אליך</div>'
+                            + '<div class="En">The system is calling you now<br/> to phone number ' + $('#LoginTelInput').val() + '<br/> Enter the last 4 digits of the number calling you now</div><div id="SendCodeDubleSwiteAlert" onclick="SubminLogin(\'SendCodeDouble\')" style="background: indianred; color: white; font-size: 17px; line-height: 17px; padding: 8px; border-radius: 6px; width: 243px;margin: 10px auto -20px; cursor: pointer;display:none;"><span class="He">לא קיבלתי צינתוק, תשלחו שוב</span><span class="En">I did not receive a call, call again </span></div>',
+                            'LoginTelCodeInputVal',
+                            'info'
+                        )
+                        SendCodeDubleTimeout = setTimeout(function () {
+                            $('#SendCodeDuble,#SendCodeDubleSwiteAlert').show();
+                        }, 9000)
+
+
+                    }).error(function (e) {
+                        triesNumber++;
+                        if (triesNumber > 8) {
+                            MySwalAndType('<span class="He">נא להתקשר למספר 0747871914</span><span class="En">Please call 0777777777</span>', 'MainTitle')
+                        }
+                        else {
+                            MySwalAndType('<span class="He">אברך יקר! <BR> זאת מערכת חדשה ונמצאת בתקופת הרצה, <BR> יש כרגע עומס רב על המערכת<BR> נסו ללחוץ שוב מספר  פעמים עד שהמערכת תגיב או נסו מאוחר יותר</span><span class="En">Dear Avrach,<BR> this is a new system and is in the running period,<BR> there is currently a lot of load on the system,<BR> try clicking again several times until the system responds or try again later</span>', 'MainTitle')
+                        }
+                        return false;
+                    }).complete(function () {
+                        $('#FixedWaiting').hide();
+                    })
+                } else {
+                    if ($('#LoginTelCodeInputVal').val().length !== 4) { MySwalAndType('<span class="En">Last 4 digits of the number that called you are incorrect</span><span class="He">קוד לא תקין</span>', "LoginTelCodeInputVal"); return false }
+                    $('#FixedWaiting').show();
+                    clearTimeout(SendCodeDubleTimeout)
+                    $.ajax({
+                        url: loginUrl + "?action=GetStudentsByid&id=" + +$('#LoginKodKollel').val() + "&Phone=" + +$('#LoginTelInput').val() + "&password=" + $('#LoginPassword').val() + "&CheckPhoneCode=" + +$('#LoginTelCodeInputVal').val(),
+                        context: Text,
+                        timeout: 180000,
+                    }).success(function (JsonData) {
+                        JsonData = JSON.parse(JsonData);
+                        if (JsonData.Status === 'failed') {
+                            MySwalAndType(JsonData.message, 'LoginTelCodeInputVal');
+                            return false;
+                        }
+                        if (JsonData.studentData) {
+                            $('#CardLogin').hide();
+                            $('#AllMainForm').show();
+                            $('#TelephoneRegistration').hide();
+                            $('#reportBag').hide();
+                            $('#MainTitle').html('<span class="He">בחר טופס</span><span class="En>Select a form</span>')
+                            sessionStorage.clear();
+                            sessionStorage.setItem("students", JSON.stringify(JsonData.student));
+                            if (JsonData.groupDetails) { sessionStorage.setItem("groupDetails", JSON.stringify(JsonData.groupDetails)); }
+                            AddServerResponseStudentData(JsonData.studentData)
+                            getFormList();
+                            
+                        }
+                    }).error(function (e) {
+                        triesNumber++;
+                        if (triesNumber > 8) {
+                            MySwalAndType('<span class="He">נא להתקשר למספר 0747871914</span><span class="En">Please call 0777777777</span>', 'MainTitle')
+                        }
+                        else {
+                            MySwalAndType('<span class="He">אברך יקר! <BR> זאת מערכת חדשה ונמצאת בתקופת הרצה, <BR> יש כרגע עומס רב על המערכת<BR> נסו ללחוץ שוב מספר  פעמים עד שהמערכת תגיב או נסו מאוחר יותר</span><span class="En">Dear Avrach,<BR> this is a new system and is in the running period,<BR> there is currently a lot of load on the system,<BR> try clicking again several times until the system responds or try again later</span>', 'MainTitle')
+                        }
+                    }).complete(function () {
+                        $('#FixedWaiting').hide();
+                    });
+                }
+            }
+
+            function skipVerification() {
+                if ($('#TypeZihuyZeout').is(':checked')) {
+                    $('#Zihuy_Radio0').prop('checked', true);
+                    $('#Zeout').val($('#LoginZeoutDarkonInputVal').val());
+                    $('#ZeoutDiv').show();
+                    $('#DarkonDiv').hide();
+                }
+                else {
+                    $('#Zihuy_Radio1').prop('checked', true);
+                    $('#Darkon').val($('#LoginZeoutDarkonInputVal').val());
+                    $('#ZeoutDiv').hide();
+                    $('#DarkonDiv').show();
+                }
+                $('#Zihuy_Radio0').attr('disabled', 'disabled');
+                $('#Zihuy_Radio1').attr('disabled', 'disabled');
+                $('#Zihuy').hide();
+                $('#Zihuy').prev().hide();
+                $('#Tel1').val($('#LoginTelInput').val());
+                $('#Tel1').attr('disabled', 'disabled');
+                $('#CardLogin').hide()
+                $('#AllMainForm').show()
+                getFormList();
+                $('#FixedWaiting').hide();
+            }
+
+          
+
+          
+           
+
+        </script>
+        <div id="AllMainForm">
+
+            <div id="MainForm" style="margin-right:20px;margin-top:30px;margin-left: 20px; ">
+                <div id="CardBtSelectedMenu">
+                </div>
+            </div>
+            <div id=" EditNote"
+                 style="text-align:center;font-size:18px;color:indianred;font-weight:bold;font-family:Assistant;display:none;">
+                <span style="font-size:24px;">שים לב!</span><br>
+                טופס זה במצב עריכה.<br> בעת שליחת הטופס, הנתונים
+                שתזינו
+                יחליפו את הקודמים.
+            </div>
+
+            <div style="text-align:center;margin:40px;font-family:Assistant,Arial;color:#808080;display:none"
+                 id="WaitDiv">
+                <img src="waitnew.gif" style="width:50px;" /><br />שומר נתונים
+            </div> <!--נא להמתין. מבצע הזמנה...-->
+
+            <div style="height:200px"></div>
+
+        </div>
+
+    <div id="SecurityLogo"
+         style="text-align:center;width:98%; max-width:400px;margin-left:auto;margin-right:auto;user-select:none">
+        <img src="./Files/Pic/Security.PNG" style="width:70%" />
+    </div>
+
+
+    <div id="FooterLogo"
+         style="text-decoration:none;padding:20px;padding-top:5px;padding-bottom:5px;margin-bottom:20px;color:gray;width: 200px;border-radius:5px;opacity:0.7;margin-left : auto; margin-right: auto;text-align:center;   font-size:75%   ;font-family: 'Assistant', sans-serif; ">
+        <img src="nedarim.PNG" /><br />מופעל באמצעות<br /><strong>
+            נדרים פלוס מבית מטרה
+            הפקות
+        </strong><br />לשיווק
+        ותמיכה: 03-7630543<br />
+    </div>
+
+    <script type="text/javascript" src="Files/FormsFunction.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+         
